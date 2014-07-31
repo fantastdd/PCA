@@ -402,9 +402,9 @@ public class PCGraph implements Serializable,Cloneable{
 				"-L"+this.getLabelSize()+"\n";
       
 		 String line = new String("");
-		 for (int i = 0;i<this.getNumOfNodes();i++)
+		 for (int i = 0;i < getNumOfNodes() - 1;i++)
 		 {
-			 for (int j =0;j<this.getNumOfNodes();j++)
+			 for (int j = i + 1;j < getNumOfNodes();j++)
 			 {
 				 int rels =this.getEdges()[i][j];
 			/*	 System.out.println(rels);
@@ -420,7 +420,7 @@ public class PCGraph implements Serializable,Cloneable{
 				 }
 			 }
 		 }
-		 System.out.println(header+line+".");
+		 //System.out.println(header+line+".");
 		 return header + line + ".";
 		           
 	}

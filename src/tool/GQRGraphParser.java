@@ -78,9 +78,9 @@ public class GQRGraphParser {
 					"-L"+graph.getLabelSize()+"\n";
             fis.write(header);
 		
-			 for (int i = 0;i<graph.numOfNodes -1;i++)
+			 for (int i = 0;i < graph.numOfNodes -1;i++)
 			 {
-				 for (int j =i;j<graph.numOfNodes;j++)
+				 for (int j = i + 1;j < graph.numOfNodes;j++)
 				 {
 					 int rels =graph.getEdges()[i][j];
 
