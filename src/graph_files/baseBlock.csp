@@ -1,0 +1,8 @@
+3 #1-N4-D3-L4
+ 0  1 ( TPP TPPI )
+ 0  2 ( EC TPP )
+ 0  3 ( DC TPP )
+ 1  3 ( EC TPP )
+ 1  2 ( EC NTPP )
+ 3  2 ( EQ NTPP )
+.
