@@ -171,7 +171,7 @@ public static void main(String args[]) throws IOException
 		// Difference.printDifference(graph, currentGraph);
 	 }
 	// newGraph.saveGraph("./FindMin/NewGraph");
-	 GQRGraphParser.generateGraphGQR(newGraph,"./FindMin/NewGraph");
+	 GQRGraphGenerator.generateGraphGQR(newGraph,"./FindMin/NewGraph");
   /*Graph graph = ReadGraphFromGQR.readGraphFromGQR("./Target/H601440RU_#522.csp");
   graph.printGraph();
   graph.setName("H601440RU_#522");

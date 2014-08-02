@@ -1,20 +1,21 @@
 package newstory;
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-
-import tool.GQRGraphParser;
+import tool.GQRGraphGenerator;
 import tool.Log;
 import essential.PCGraph;
 
 public class GenerateGraph {
-List<PCGraph> generatedGraphs = new LinkedList<PCGraph>();
+//List<PCGraph> gOGraphs = new LinkedList<PCGraph>();//output graphs
+StringBuilder sb = new StringBuilder();
 public void generateCompleteGraph(int k)
 {
 	int[][] edges = new int[k][k];
 	assign(0, 1, 0, edges);
-	GQRGraphParser.parseGraphGQR(generatedGraphs, "comp3");
+	int numOfEdges = k * (k - 1)/2;
+	sb.ensureCapacity((int) Math.pow(50, numOfEdges));
+
+	//GQRGraphGenerator.parseGraphGQR(gOGraphs, "comp3");
 }
+int gCounter = 0;
 public void assign(int i, int j, int label, int[][] edges )
 {
 	while (label < 254)
@@ -22,35 +23,27 @@ public void assign(int i, int j, int label, int[][] edges )
 		edges[i][j] =  ++label;
 		//assign labels to constraint i, j +1
 		if (j + 1 < edges.length)
-		{ 
-			/*int mlabel = assign(i, j + 1, 0, edges);
-			while(mlabel < 254)
-			{
-				mlabel = assign(i, j + 1, mlabel, edges);
-			}*/
 			assign(i, j + 1, 0, edges);
-		}
 		else
 			//assign labels to constraint  i + 1, i + 2
 			if (i < edges.length - 2)
-			{
-				/*int mlabel = assign(i + 1, i + 2, 0, edges);
-				while(mlabel < 254)
-				{
-					mlabel = assign(i + 1, i + 2, mlabel, edges);
-				}	*/
 				assign(i + 1, i + 2, 0, edges);
-			}
 			else
 			//reach the terminate node
 			{
 				//write graph;
 				//Log.echo("i j " + i + " " + j + " " + label);
+				gCounter ++;
 				PCGraph graph = new PCGraph(edges);
 				//Log.echo(graph.printGraph());
-				generatedGraphs.add(graph);
-				if (generatedGraphs.size() % 10000 == 0)
-					Log.echo(" Generated " + generatedGraphs.size() + " graphs ");
+				GQRGraphGenerator.parseGraphGQR(graph, sb);
+				//gOGraphs.add(graph);
+				if (gCounter % 1000000 == 0)
+				{
+					Log.echo(" Generated "  + gCounter + " graphs ");
+					GQRGraphGenerator.writeGraphGQR(sb, "comp3");
+					sb = new StringBuilder();
+				}
 			}
 			
 				
@@ -66,10 +59,9 @@ public static void main(String args[])
 	if (file.exists())
 		file.delete();
 	GQRGraphParser.generateGraphGQR(graph, "TFG_" + filename);*/
-	
 	GenerateGraph gg = new GenerateGraph();
-	gg.generateCompleteGraph(3);
-	Log.echo("Number of graphs  " + gg.generatedGraphs.size());
+	gg.generateCompleteGraph(4);
+	Log.echo("Number of graphs  " + gg.gCounter);
 }
 
 }

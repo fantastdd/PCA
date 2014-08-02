@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 
-import tool.GQRGraphParser;
+import tool.GQRGraphGenerator;
 import tool.GQRGraphReader;
 import tool.Log;
 import analysis.EntropyConstraint;
@@ -95,7 +95,7 @@ public class TriangleFreeGraph {
 		File file = new File("TFG_" + filename + ".csp");
 		if (file.exists())
 			file.delete();
-		GQRGraphParser.generateGraphGQR(graph, "TFG_" + filename);
+		GQRGraphGenerator.generateGraphGQR(graph, "TFG_" + filename);
 		
 	}
 }
