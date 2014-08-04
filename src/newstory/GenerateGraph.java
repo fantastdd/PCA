@@ -39,7 +39,11 @@ public void generateRealComplete3Graph_Atomic()
 	   Log.echo(" Generated "  + gen.generateAllObjects().size() + " combinations ");
 	   for (ICombinatoricsVector<Integer> combination : gen) 
 	   {
+		   //Get unique order of the labels.
 		   
+		   	  edges[0][1] = combination.getValue(0);    
+		      edges[0][2] = combination.getValue(1);
+		      edges[1][2] = combination.getValue(2);
 	   }
 }
 public void generateComplete3Graph()
