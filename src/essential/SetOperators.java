@@ -12,22 +12,6 @@ public class SetOperators {
 private static LinkedList<LinkedList<LinkedHashSet<ReRelation>>> splitCandidnate;
 private static LinkedList<LinkedList<Integer>> bisplitCandidnate;
 
-public static Collection union(Collection a, Collection b)
-{
-    Collection c = new LinkedHashSet(a);
-    c.addAll(b);
-	return c;
-}
-public static Collection intersection(Collection a, Collection b)
-{
-	Collection c = new LinkedHashSet();
-	for (Object o:a)
-	{
-		if(b.contains(o))
-			c.add(o);
-	}
-	return c;
-}
 
 public static int union(int a, int b)
 {
@@ -153,7 +137,7 @@ public static  LinkedList<Integer> splitToMinmumSubsets(int a,String MTStype){
 
 public static  LinkedList<Integer> splitToAtomicLabel(int a){
 	
-    int relation = a;
+
 	LinkedList<Integer> resultRelation = new LinkedList<Integer>();
     String binary = Integer.toBinaryString(a);
     for (int j = 0; j < binary.length();j++)

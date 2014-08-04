@@ -9,11 +9,17 @@ StringBuilder sb = new StringBuilder();
 public void generateCompleteGraph(int k)
 {
 	int[][] edges = new int[k][k];
-	assign(0, 1, 0, edges);
-	int numOfEdges = k * (k - 1)/2;
+		int numOfEdges = k * (k - 1)/2;
 	sb.ensureCapacity((int) Math.pow(50, numOfEdges));
-
+	assign(0, 1, 0, edges);
 	//GQRGraphGenerator.parseGraphGQR(gOGraphs, "comp3");
+}
+public void generateComplete3Graph()
+{
+	int[][] edges = new int[3][3];
+	int numOfEdges = 3;
+	sb.ensureCapacity((int) Math.pow(50, numOfEdges));
+	assign(0, 1, 0, edges);
 }
 int gCounter = 0;
 public void assign(int i, int j, int label, int[][] edges )
