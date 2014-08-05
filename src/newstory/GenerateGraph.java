@@ -6,6 +6,7 @@ import org.paukov.combinatorics.ICombinatoricsVector;
 import tool.GQRGraphGenerator;
 import tool.Log;
 import essential.PCGraph;
+import essential.SetOperators;
 
 public class GenerateGraph {
 //List<PCGraph> gOGraphs = new LinkedList<PCGraph>();//output graphs
@@ -67,21 +68,29 @@ public void generateComplete3Graph()
 	   // the initial vector
 	   Generator<Integer> gen = Factory.createMultiCombinationGenerator(initialVector, 3);
 	  
-	   Log.echo(" Generated "  + gen.generateAllObjects().size() + " graphs ");
+	   Log.echo(" Generated "  + gen.generateAllObjects().size() + " combinations ");
 	   for (ICombinatoricsVector<Integer> combination : gen) {
 	    
 	      edges[0][1] = combination.getValue(0);    
-	      edges[0][2] = combination.getValue(1);
-	      edges[1][2] = combination.getValue(2);
+	      //edges[0][2] = combination.getValue(1);
+	      //edges[1][2] = combination.getValue(2);
+	      edges[1][2] = combination.getValue(1);
+	      //edges[2][0] = combination.getValue(1); edges[0][2] = SetOperators.inverse(edges[2][0]);
+	      edges[0][2] = SetOperators.inverse(combination.getValue(2));
+	      
 	      PCGraph graph = new PCGraph(edges);
 		  GQRGraphGenerator.parseGraphGQR(graph, sb);
 		  gCounter ++;
+		  //Shift one edge to get another order
+		  edges[0][1] = combination.getValue(0);
+		  edges[1][2] = combination.getValue(2);
+		  edges[0][2] = SetOperators.inverse(combination.getValue(1));
 		  if (gCounter % 1000000 == 0)
 		  {
 				Log.echo(" Generated "  + gCounter + " graphs ");
 				GQRGraphGenerator.writeGraphGQR(sb, "comp3");
 				sb = new StringBuilder();
-			}
+		  }
 	   }
 	   if (sb.length() != 0)
 	   {
