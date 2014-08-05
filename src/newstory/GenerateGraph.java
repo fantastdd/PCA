@@ -25,7 +25,9 @@ public void generateCompleteGraph(int k)
 	}
 	//GQRGraphGenerator.parseGraphGQR(gOGraphs, "comp3");
 }
-public void generateRealComplete3Graph_Atomic()
+/*
+ * Useless, Min(MUS) of all the atomic graph is 3. 
+ * public void generateRealComplete3Graph_Atomic()
 {
 	int[][] edges = new int[3][3];
 	int numOfEdges = 3;
@@ -39,13 +41,12 @@ public void generateRealComplete3Graph_Atomic()
 	   Log.echo(" Generated "  + gen.generateAllObjects().size() + " combinations ");
 	   for (ICombinatoricsVector<Integer> combination : gen) 
 	   {
-		   //Get unique order of the labels.
-		   
-		   	  edges[0][1] = combination.getValue(0);    
-		      edges[0][2] = combination.getValue(1);
-		      edges[1][2] = combination.getValue(2);
+		   //Get unique order of the labels.		   
+		   edges[0][1] = combination.getValue(0);    
+		   edges[0][2] = combination.getValue(1);
+		   edges[1][2] = combination.getValue(2);
 	   }
-}
+}*/
 public void generateComplete3Graph()
 {
 	
